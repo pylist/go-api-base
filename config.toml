@@ -1,0 +1,12 @@
+[Server]
+mode = "debug"
+host = "127.0.0.1"
+port = 51012
+
+[DB]
+types = "mysql"
+host = "192.168.5.20:3306"
+name = "vip"
+username = "root"
+password = "Test2022"
+charset = "utf8mb4"

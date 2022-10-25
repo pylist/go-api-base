@@ -1,9 +1,8 @@
 package initialize
 
 import (
-	"encoding/json"
+	"github.com/jinzhu/configor"
 	"go-api-base/config"
-	"os"
 )
 
 func Config() {
@@ -11,12 +10,8 @@ func Config() {
 		DB     *config.DBConfig
 		Server *config.ServerConfig
 	}{}
-	data, err := os.ReadFile("config.json")
-	if err != nil {
-		panic("配置文件未找到:" + err.Error())
-	}
-	if err := json.Unmarshal(data, &cfg); err != nil {
-		panic("配置文件解析失败" + err.Error())
+	if err := configor.Load(&cfg, "config.toml"); err != nil {
+		panic("配置文件加载失败, err:" + err.Error())
 	}
 	config.Server = cfg.Server
 	config.DB = cfg.DB
